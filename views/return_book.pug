@@ -1,0 +1,22 @@
+extends layout.pug
+block content
+  h1 Patron: Return Book
+  p
+    strong Book Title: 
+    | #{loans.book.title}
+  p
+    strong Loaned By: 
+    | #{loans.patron.first_name} #{loans.patron.last_name}
+  p
+    strong Loaned On: 
+    | #{loans.loaned_on}
+  p
+    strong Return By: 
+    | #{loans.return_by}
+  form.return_form(method= 'post')
+    p
+      label(for='returned_on') Returned on:
+      input#returned_on(type='text' name= 'returned_on' value= today)
+    p
+      input(type='submit', value='Return Book')
+    script(type= 'text/javascript' src='/static/js/return.js')

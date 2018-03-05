@@ -1,0 +1,9 @@
+extends layout.pug
+block content
+  h1 Looks like Trouble
+  form
+    h2.error Oooops!
+    ul.error
+      each error in err
+        li #{err}
+  

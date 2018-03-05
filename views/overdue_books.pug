@@ -1,0 +1,31 @@
+extends layout.pug
+block content
+  h1 Overdue Books
+  p
+    a.button(href='/books/new_book') Create New Book
+  p
+    | Filters 
+    a(href='/books/') All
+    |  
+    a(href='/books/overdue_books') Overdue
+    |  
+    a(href='/books/checked_books') Checked Out
+  table
+    thead
+      tr
+        th Title
+        th Author
+        th Genre
+        th Year Released
+        th Action
+    tbody
+      each loan in loans
+        tr
+          td
+            a(href='/books/book_detail/'+loan.book_id) #{loan.book.title}
+          td #{loan.book.author}
+          td #{loan.book.genre}
+          td #{loan.book.first_published}
+          td
+            if(loan.returned_on === 'Not Returned')
+              a.button(href='/books/return_book/'+loan.id) Return Book
