@@ -157,7 +157,7 @@ patronsForm.addEventListener('submit', (e) => {
         e.preventDefault();
         lastName.style.borderColor = 'red';
         span1.style.display = '';
-        span1.textContent = nameMesage;
+        span1.textContent = nameMessage;
   }else{
         lastName.style.borderColor = 'green';
         span1.style.display = 'none';
