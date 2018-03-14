@@ -43,5 +43,6 @@ block content
           td #{loan.return_by}
           td #{loan.returned_on}
           td
-            a.button(href='/books/return_book/'+loan.id) Return Book
-      script(type= 'text/javascript' src='/static/js/patrons.js')
+            if(loan.returned_on === 'Not Returned')
+              a.button(href='/books/return_book/'+loan.id) Return Book
+    script(type= 'text/javascript' src='/static/js/patrons.js')

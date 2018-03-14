@@ -12,6 +12,9 @@ const searchInput = document.createElement('input');
 const numberOfPages = Math.ceil(numberOfRows / perPage);
 let pageNumber = 1;
 
+// hide rows when page loads
+$tableRows.hide();
+
 // create a pagination function to call on whenever needed
 let paginate = (page, rows) => {
   rows.hide();

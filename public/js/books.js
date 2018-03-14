@@ -11,6 +11,12 @@ const booksForm = document.getElementsByClassName('book_form')[0];
 const errorDiv = document.getElementsByClassName('books'); // dont forget to add index as you code in listeners
 const span = document.createElement('span');
 span.style.color = 'red';
+const span1 = document.createElement('span');
+span1.style.color = 'red';
+const span2 = document.createElement('span');
+span2.style.color = 'red';
+const span3 = document.createElement('span');
+span3.style.color = 'red';
 //const titleExp =
 const publishedExp = /\d{4}$/;
 const titleMessage = 'The title is required.';
@@ -30,7 +36,7 @@ title.addEventListener('keyup', (e) => {
     title.style.borderColor = 'red';
     }else{
     span.style.display = 'none';
-    title.style.borderColor = 'lightgreen';
+    title.style.borderColor = 'green';
     }
 }); // end of title validation
 
@@ -38,13 +44,13 @@ title.addEventListener('keyup', (e) => {
 author.addEventListener('keyup', (e) => {
   if(author.value.length <= 1) {
     e.preventDefault()
-    span.style.display = '';
-    span.textContent = authorMessage;
-    errorDiv[1].before(span);
+    span1.style.display = '';
+    span1.textContent = authorMessage;
+    errorDiv[1].before(span1);
     author.style.borderColor = 'red';
     }else{
-    span.style.display = 'none';
-    author.style.borderColor = 'lightgreen';
+    span1.style.display = 'none';
+    author.style.borderColor = 'green';
     }
 });// end of author Validation
 
@@ -52,13 +58,13 @@ author.addEventListener('keyup', (e) => {
 genre.addEventListener('keyup', (e) => {
   if(genre.value.length <= 1) {
     e.preventDefault()
-    span.style.display = '';
-    span.textContent = genreMessage;
-    errorDiv[2].before(span);
+    span2.style.display = '';
+    span2.textContent = genreMessage;
+    errorDiv[2].before(span2);
     genre.style.borderColor = 'red';
     }else{
-    span.style.display = 'none';
-    genre.style.borderColor = 'lightgreen';
+    span2.style.display = 'none';
+    genre.style.borderColor = 'green';
     }
 });// end of genre Validation
 
@@ -67,32 +73,63 @@ firstPublished.addEventListener('keyup', (e) => {
   let regExp = publishedExp;
   if(!regExp.test(e.target.value)) {
     e.preventDefault()
-    span.style.display = '';
-    span.textContent = firstPublishedMessage;
-    errorDiv[3].before(span);
+    span3.style.display = '';
+    span3.textContent = firstPublishedMessage;
+    errorDiv[3].before(span3);
     firstPublished.style.borderColor = 'red';
     }else{
-    span.style.display = 'none';
-    firstPublished.style.borderColor = 'lightgreen';
+    span3.style.display = 'none';
+    firstPublished.style.borderColor = 'green';
     }
 });// end of genre Validation
 
 // add submit listener too keep the form from submiting.
 booksForm.addEventListener('submit', (e) => {
-  if(title.value.length <= 1 ||
-     author.value.length <= 1 ||
-     genre.value.length <= 1 ||
-     !publishedExp.test(firstPublished.value)){
-     e.preventDefault();
-     span.style.display = '';
-     span.textContent = submitMessage;
-     errorDiv[4].before(span);
-     inputArray.map(input => input.style.borderColor = 'red')
+  if(title.value.length <= 1){
+    e.preventDefault()
+    span.style.display = '';
+    span.textContent = titleMessage;
+    errorDiv[0].before(span);
+    title.style.borderColor = 'red';
   }else{
-     span.style.display = 'none';
-     inputArray.map(input => input.style.borderColor = 'green')
+    span.style.display = 'none';
+    span.textContentl = '';
+    title.style.borderColor = 'green';
   }
-});
+  if(author.value.length <= 1){
+    e.preventDefault()
+    span1.style.display = '';
+    span1.textContent = authorMessage;
+    errorDiv[1].before(span1);
+    author.style.borderColor = 'red';
+  }else{
+    span1.style.display = 'none';
+    span1.textContentl = '';
+    author.style.borderColor = 'green';
+  }
+  if(genre.value.length <= 1){
+    e.preventDefault()
+    span2.style.display = '';
+    span2.textContent = genreMessage;
+    errorDiv[2].before(span2);
+    genre.style.borderColor = 'red';
+  }else{
+    span2.style.display = 'none';
+    span2.textContentl = '';
+    genre.style.borderColor = 'green';
+  }
+  if(!publishedExp.test(firstPublished.value)){
+    e.preventDefault()
+    span3.style.display = '';
+    span3.textContent = firstPublishedMessage;
+    errorDiv[3].before(span3);
+    firstPublished.style.borderColor = 'red';
+  }else{
+    span3.style.display = 'none';
+    span3.textContentl = '';
+    firstPublished.style.borderColor = 'green';
+  }
+});// end of submit handler
 
 console.log('Welcome to the new book console I hope you enjoy your stay.');
 }); // end of window event listner

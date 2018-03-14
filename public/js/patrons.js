@@ -19,6 +19,17 @@ const patronsForm = document.getElementsByClassName('patrons_form')[0];
 let inputArray = [firstName, lastName, address, email, libraryId, zip];
 const span = document.createElement('span');
 span.style.color = 'red';
+const span1 = document.createElement('span');
+span1.style.color = 'red';
+const span2 = document.createElement('span');
+span2.style.color = 'red';
+const span3 = document.createElement('span');
+span3.style.color = 'red';
+const span4 = document.createElement('span');
+span4.style.color = 'red';
+const span5 = document.createElement('span');
+span5.style.color = 'red';
+const spanArray = [span, span1, span2, span3, span4, span5]
 const errorElement = document.getElementsByClassName('patrons');
 const nameExp = /^[a-zA-Z ]{2,30}$/;
 const addressExp = /^\s*\S+(?:\s+\S+){2}/;
@@ -54,13 +65,13 @@ firstName.addEventListener('keyup', (e) => {
     let regExp = nameExp;
       if(!regExp.test(e.target.value)){
         e.preventDefault();
-        span.style.display = '';
-        span.textContent = nameMessage;
-        errorElement[1].before(span);
+        span1.style.display = '';
+        span1.textContent = nameMessage;
+        errorElement[1].before(span1);
         lastName.className = '';
         lastName.style.borderColor = 'red';
       }else{
-        span.style.display = 'none';
+        span1.style.display = 'none';
         lastName.style.borderColor = 'green';
       }
     }) // end of keyup event listner
@@ -70,13 +81,13 @@ firstName.addEventListener('keyup', (e) => {
       let regExp = addressExp;
         if(!regExp.test(e.target.value)){
           e.preventDefault();
-          span.style.display = '';
-          span.textContent = addressMessage;
-          errorElement[2].before(span);
+          span2.style.display = '';
+          span2.textContent = addressMessage;
+          errorElement[2].before(span2);
           address.className = '';
           address.style.borderColor = 'red';
         }else{
-          span.style.display = 'none';
+          span2.style.display = 'none';
           address.style.borderColor = 'green';
         }
       }) // end of keyup event listner
@@ -86,13 +97,13 @@ firstName.addEventListener('keyup', (e) => {
         let regExp = emailExp;
           if(!regExp.test(e.target.value)){
             e.preventDefault();
-            span.style.display = '';
-            span.textContent = emailMessage;
-            errorElement[3].before(span);
+            span3.style.display = '';
+            span3.textContent = emailMessage;
+            errorElement[3].before(span3);
             email.className = '';
             email.style.borderColor = 'red';
           }else{
-            span.style.display = 'none';
+            span3.style.display = 'none';
             email.style.borderColor = 'green';
           }
         }) // end of keyup event listner
@@ -101,13 +112,13 @@ firstName.addEventListener('keyup', (e) => {
         libraryId.addEventListener('keyup', (e) => {
             if(e.target.value.length < 7){
               e.preventDefault();
-              span.style.display = '';
-              span.textContent = libMessage;
-              errorElement[4].before(span);
+              span4.style.display = '';
+              span4.textContent = libMessage;
+              errorElement[4].before(span4);
               libraryId.className = '';
               libraryId.style.borderColor = 'red';
             }else{
-              span.style.display = 'none';
+              span4.style.display = 'none';
               libraryId.style.borderColor = 'green';
             }
           }) // end of keyup event listner
@@ -117,36 +128,86 @@ firstName.addEventListener('keyup', (e) => {
           let regExp = zipExp;
             if(!regExp.test(e.target.value)){
               e.preventDefault();
-              span.style.display = '';
-              span.textContent = zipMessage;
-              errorElement[5].before(span);
+              span5.style.display = '';
+              span5.textContent = zipMessage;
+              errorElement[5].before(span5);
               zip.className = '';
               zip.style.borderColor = 'red';
             }else{
-              span.style.display = 'none';
+              span5.style.display = 'none';
               zip.style.borderColor = 'green';
             }
           }) // end of keyup event listner
 
   // add submit listnener for the patrons form
 patronsForm.addEventListener('submit', (e) => {
-  if(!nameExp.test(firstName.value) ||
-     !nameExp.test(lastName.value) ||
-     !addressExp.test(address.value) ||
-     !emailExp.test(email.value) ||
-     libraryId.value.length < 7 ||
-     !zipExp.test(zip.value)) {
-          e.preventDefault();
-          span.style.display = '';
-          span.textContent = formSubmitMessage;
-          errorElement[6].before(span);
-          inputArray.map(input => input.style.borderColor = 'red')
-  }else{
-          span.style.display = 'none';
-          inputArray.map(input => input.style.borderColor = 'green')
-          console.log("All Good");
+   if(!nameExp.test(firstName.value)){
+        e.preventDefault();
+        firstName.style.borderColor = 'red';
+        span.style.display = '';
+        span.textContent = nameMessage;
+        errorElement[0].before(span);
+  }else {
+        firstName.style.borderColor = 'green';
+        span.style.display = 'none';
+        span.textContent = '';
+        errorElement[0].before(span);
   }
-})
+  if(!nameExp.test(lastName.value)){
+        e.preventDefault();
+        lastName.style.borderColor = 'red';
+        span1.style.display = '';
+        span1.textContent = nameMesage;
+  }else{
+        lastName.style.borderColor = 'green';
+        span1.style.display = 'none';
+        span1.textContent = '';
+  }
+  if(!addressExp.test(address.value)){
+        e.preventDefault();
+        address.style.borderColor = 'red';
+        span2.style.display = '';
+        span2.textContent = addressMessage;
+        errorElement[2].before(span2);
+   }else{
+         address.style.borderColor = 'green';
+         span2.style.display = 'none';
+         span2.textContent = '';
+   }
+    if (!emailExp.test(email.value)){
+       e.preventDefault();
+       email.style.borderColor = 'red';
+       span3.style.display = '';
+       span3.textContent = formSubmitMessage;
+       errorElement[3].before(span3);
+   }else{
+         email.style.borderColor = 'green';
+         span3.style.display = 'none';
+         span3.textContent = '';
+   }
+    if(libraryId.value.length < 7){
+       e.preventDefault();
+       libraryId.style.borderColor = 'red';
+       span4.style.display = '';
+       span4.textContent = libMessage;
+       errorElement[4].before(span4);
+   }else{
+         libraryId.style.borderColor = 'green';
+         span4.style.display = 'none';
+         span4.textContent = '';
+   }
+    if(!zipExp.test(zip.value)){
+       e.preventDefault();
+       zip.style.borderColor = 'red';
+       span5.style.display = '';
+       span5.textContent = zipMessage;
+       errorElement[5].before(span5);
+   }else{
+         zip.style.borderColor = 'green';
+         span5.style.display = 'none';
+         span5.textContent = '';
+   }
+})// end of submit handler
 
 
 

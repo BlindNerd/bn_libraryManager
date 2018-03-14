@@ -1,8 +1,5 @@
 'use strict';
 
-const alphaMessage = "Sorry this column in the database does not only accepts letters.";
-const numberMessage = "Sorry this column in the database does not only accepts numbers.";
-
 module.exports = (sequelize, DataTypes) => {
   var Books = sequelize.define('books', {
 
@@ -17,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: 'The title of the book is required.'
+          msg: 'The title of the book is required. Please click the back button to fix.'
         }
       }
     },
@@ -26,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: 'The author of the book is required.'
+          msg: 'The author of the book is required. Please click the back button to fix.'
         }
       }
     },
@@ -35,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: 'The genre of the book is required.'
+          msg: 'The genre of the book is required. Please click the back button to fix.'
         }
       }
     },
@@ -44,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       validate: {
         notEmpty: {
-          msg: 'The year the book was first published is required.'
+          msg: 'The year the book was first published is required. Please click the back button to fix.'
         }
       }
     }

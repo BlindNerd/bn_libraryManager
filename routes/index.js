@@ -32,7 +32,7 @@ console.log(sevenDaysFromNow);
         }).then((books) => {
              res.render('all_books', { books: books })
           }).catch(err => {
-            console.log(err);
+            next(err);
           })
     })
 
@@ -45,7 +45,7 @@ console.log(sevenDaysFromNow);
         }).then((loans) => {
             res.render('all_loans', {loans: loans})
         }).catch((err) => {
-          console.log(err);
+          next(err);
         });
       })
 
@@ -57,7 +57,7 @@ console.log(sevenDaysFromNow);
             .then((patrons) => {
               res.render('all_patrons', { patrons: patrons })
             }).catch(err => {
-              console.log(err);
+              next(err);
             });
         })
 
@@ -79,7 +79,7 @@ console.log(sevenDaysFromNow);
              res.render('book_detail', { book: book, loans: loans})
            })
          }).catch(err => {
-           console.log(err);
+           next(err);
          });
        })
 
@@ -92,7 +92,7 @@ console.log(sevenDaysFromNow);
       }).then((books) => {
         res.redirect('/books')
       }).catch((err) => {
-        console.log(err);
+        next(err);
       })
     }) // end of post update loans
 
@@ -111,7 +111,7 @@ console.log(sevenDaysFromNow);
      }).then(loans => {
        res.render('checked_books', {loans: loans})
      }).catch(err => {
-       console.log(err);
+       next(err);
      });
     })
 
@@ -130,7 +130,7 @@ console.log(sevenDaysFromNow);
       }).then(loans => {
         res.render('checked_loans', {loans: loans});
       }).catch(err => {
-        console.log(err);
+        next(err);
       });
     })
 
@@ -146,7 +146,7 @@ console.log(sevenDaysFromNow);
          .then((books) => {
            res.redirect('/books')
          }).catch(err => {
-           console.log(err);
+           next(err);
          });
   })
 
@@ -166,7 +166,7 @@ console.log(sevenDaysFromNow);
                                              today,
                                              sevenDaysFromNow })
                 }).catch((err) => {
-                  console.log(err);
+                  next(err);
               })// end of catch
             })// end of return books then (promise)
           })// end of render
@@ -199,7 +199,8 @@ console.log(sevenDaysFromNow);
      Loans.findAll({
        where: [{
          return_by: {
-           [Op.lt]: today
+           [Op.lt]: today,
+           [Op.ne]: ''
          },
 
          returned_on: {
@@ -221,7 +222,8 @@ console.log(sevenDaysFromNow);
      Loans.findAll({
        where: [{
          return_by: {
-           [Op.lt]: today
+           [Op.lt]: today,
+           [Op.ne]: ''
          },
          returned_on: {
           [Op.eq]: 'Not Returned'
@@ -267,7 +269,7 @@ console.log(sevenDaysFromNow);
        }).then((patron) => {
          res.redirect('/patrons')
        }).catch((err) => {
-         console.log(err);
+         next(err);
        })
      }) // end of post update loans
 
@@ -297,7 +299,7 @@ console.log(sevenDaysFromNow);
        }).then((loans) => {
        res.redirect('/loans')
      }).catch((err) => {
-       console.log(err);
+       next(err);
      })
    }) // end of post update loans
 

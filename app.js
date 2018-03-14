@@ -41,9 +41,9 @@ app.use((req, res, next) => {
 
 app.use( (err, req, res, next) => {
   res.locals.err = err;
-  console.log(res.locals.err);
+  console.log(res.locals.err.message);
   res.status = 500;
-  res.render('error', {err});
+  res.render('error', {err: err});
 });// end of error handler
 
 // sync server on startup of server

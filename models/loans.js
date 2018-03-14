@@ -1,10 +1,6 @@
 'use strict';
 
 
-const alphaMessage = "Sorry this column in the database does not only accepts letters.";
-const numberMessage = "Sorry this column in the database does not only accepts numbers.";
-const dateMessage = "Sorry this column in this database only accepts dates.";
-
 module.exports = (sequelize, DataTypes) => {
   var Loans = sequelize.define('loans', {
     id: {
@@ -25,13 +21,13 @@ module.exports = (sequelize, DataTypes) => {
        type: DataTypes.DATEONLY,
        validate: {
          notEmpty: {
-           msg: 'The loaned on date is required is a date format ie yyyy-mm-dd.'
+           msg: 'The loaned on date is required is a date format ie yyyy-mm-dd. Please click the back button to fix.'
          }
        }
     },
 
     return_by: {
-       type: DataTypes.DATEONLY
+       type: DataTypes.STRING
     },
 
     returned_on: {
