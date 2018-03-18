@@ -214,7 +214,6 @@ console.log(sevenDaysFromNow);
      }).then(loans => {
        res.render('overdue_books', {loans: loans});
      })
-
    })
 
    // render the overdue_loans page at the overdue_loans view filter by return by and not returned
